@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+        </head>
+        <body>
+
+        <h2>Issues Count Result :-</h2>
+
+        <table>
+          <tr>
+            <td>Total Issues open </td>
+            <td>{{v2}}</td>
+          </tr>
+          <tr>
+            <td>Issues Open in last 24 hours </td>
+            <td>{{v1}}</td>
+          </tr>
+          <tr>
+            <td>Issues Open in last week </td>
+            <td>{{v3}}</td>
+          </tr>
+          <tr>
+            <td>Issues Open for more than a week </td>
+            <td>{{v4}}</td>
+          </tr>
+
+        </table>
+
+        </body>
+        </html>
