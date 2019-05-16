@@ -1,7 +1,7 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import datetime
-
+import string
 def countIssues(url):
     #for storing issue count
     issues_today = 0
@@ -18,11 +18,23 @@ def countIssues(url):
     page_soup = soup(page_html,'html.parser')
     # print(page_soup)
     containers = page_soup.findAll("div",{"class":"pagination"})
-
+    containers_2 = page_soup.findAll("span",{"class":"Counter"})
+    total_issues = str(containers_2[0].contents[0])
+    # total_issues = "abc123"
+    for char in string.punctuation:
+        total_issues = total_issues.replace(char,'')
+    
+    try:
+        total_issues = int(total_issues)
+        brute = False
+    except:
+        brute = True
     total_pages = containers[0].find('em',{'class':'current'})['data-total-pages']
     total_pages = int(total_pages)
-
+    to_cont = True
     for number_page in range(1,total_pages+1):
+        if not to_cont:
+            break
         client_data = uReq(my_url+second_part_url+str(number_page)+third_part_url)
         page_html = client_data.read()
         client_data.close()
@@ -40,5 +52,12 @@ def countIssues(url):
             elif hours>=24 and hours <=128:
                 issues_week+=1
             else:
-                issues_ago+=1
+                if not brute:
+                    to_cont = False
+                    break
+                else:
+                    issues_ago +=1
+        if not brute:
+            issues_ago = total_issues - issues_today - issues_week
+
     return issues_today,issues_week,issues_ago
