@@ -18,10 +18,5 @@ How to use on localhost:
 After cloning the server, run the flask_app.py file(python3), which will start the server for same.
 Use the localhost url provided by the code's output, to extract the issues from a Repository.
 
-Use online hosted tool:
-http://vedant297.pythonanywhere.com/
-this is the link for online hosted version.
-Since python anywhere has internal server timeout, please try to test with a Repository having 200 or less issues only.
-
 Special Note:
 You need to provide the link to the github repository and not the link for issues page for a Repository.
